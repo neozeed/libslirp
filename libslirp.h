@@ -7,9 +7,13 @@
 #include <sys/types.h>
 
 #ifdef _WIN32
-#include <winsock2.h>
+//#include <winsock2.h>
+//#include <in6addr.h>
 #include <ws2tcpip.h>
-#include <in6addr.h>
+//#include <Ws2def.h>	//inet_ntop
+
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+#define MIN(a, b) ((a) < (b) ? (a) : (b))
 #else
 #include <netinet/in.h>
 #include <arpa/inet.h>
@@ -258,5 +262,47 @@ const char *slirp_version_string(void);
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
+
+#ifdef _WIN32
+#ifndef EWOULDBLOCK
+#define EWOULDBLOCK     WSAEWOULDBLOCK
+#define EINPROGRESS     WSAEINPROGRESS
+#define EALREADY        WSAEALREADY
+#define ENOTSOCK        WSAENOTSOCK
+#define EDESTADDRREQ    WSAEDESTADDRREQ
+#define EMSGSIZE        WSAEMSGSIZE
+#define EPROTOTYPE      WSAEPROTOTYPE
+#define ENOPROTOOPT     WSAENOPROTOOPT
+#define EPROTONOSUPPORT WSAEPROTONOSUPPORT
+#define ESOCKTNOSUPPORT WSAESOCKTNOSUPPORT
+#define EOPNOTSUPP      WSAEOPNOTSUPP
+#define EPFNOSUPPORT    WSAEPFNOSUPPORT
+#define EAFNOSUPPORT    WSAEAFNOSUPPORT
+#define EADDRINUSE      WSAEADDRINUSE
+#define EADDRNOTAVAIL   WSAEADDRNOTAVAIL
+#define ENETDOWN        WSAENETDOWN
+#define ENETUNREACH     WSAENETUNREACH
+#define ENETRESET       WSAENETRESET
+#define ECONNABORTED    WSAECONNABORTED
+#define ECONNRESET      WSAECONNRESET
+#define ENOBUFS         WSAENOBUFS
+#define EISCONN         WSAEISCONN
+#define ENOTCONN        WSAENOTCONN
+#define ESHUTDOWN       WSAESHUTDOWN
+#define ETOOMANYREFS    WSAETOOMANYREFS
+#define ETIMEDOUT       WSAETIMEDOUT
+#define ECONNREFUSED    WSAECONNREFUSED
+#define ELOOP           WSAELOOP
+//#define ENAMETOOLONG    WSAENAMETOOLONG
+#define EHOSTDOWN       WSAEHOSTDOWN
+#define EHOSTUNREACH    WSAEHOSTUNREACH
+//#define ENOTEMPTY       WSAENOTEMPTY
+#define EPROCLIM        WSAEPROCLIM
+#define EUSERS          WSAEUSERS
+#define EDQUOT          WSAEDQUOT
+#define ESTALE          WSAESTALE
+#define EREMOTE         WSAEREMOTE
+#endif  /* #if 0 */
+#endif	/* _WIN32 */
 
 #endif /* LIBSLIRP_H */

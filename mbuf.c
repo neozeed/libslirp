@@ -13,6 +13,7 @@
  * the flags
  */
 
+#include <stddef.h>
 #include "slirp.h"
 
 #define MBUF_THRESH 30

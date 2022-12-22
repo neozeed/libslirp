@@ -24,7 +24,7 @@
 #ifndef UTIL_H_
 #define UTIL_H_
 
-#include <glib.h>
+#include <tinyglib.h>
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -164,6 +164,9 @@ void slirp_set_nonblock(int fd);
 
 static inline int slirp_socket_set_v6only(int fd, int v)
 {
+#ifndef IPV6_V6ONLY
+#define IPV6_V6ONLY 1	/* totally guessing */
+#endif
     return setsockopt(fd, IPPROTO_IPV6, IPV6_V6ONLY, &v, sizeof(v));
 }
 

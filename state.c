@@ -23,6 +23,7 @@
  * THE SOFTWARE.
  */
 #include "slirp.h"
+#include <stddef.h>
 #include "vmstate.h"
 #include "stream.h"
 

@@ -3,18 +3,21 @@
 #define SLIRP_H
 
 #ifdef _WIN32
+#define CERT_NAME_BLOB void*
+#define CRYPT_HASH_BLOB void*
 
 /* as defined in sdkddkver.h */
 #ifndef _WIN32_WINNT
-#define _WIN32_WINNT 0x0600 /* Vista */
+/*#define _WIN32_WINNT 0x0600 /* Vista */
+#define _WIN32_WINNT 0x0601 /* Newer than Vista */
 #endif
 /* reduces the number of implicitly included headers */
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN
 #endif
 
-#include <winsock2.h>
 #include <windows.h>
+#include <winsock2.h>
 #include <ws2tcpip.h>
 #include <sys/timeb.h>
 #include <iphlpapi.h>

@@ -20,6 +20,19 @@
 
 #include "libslirp.h"
 
+#define inet_aton slirp_inet_aton
+
+/* so going to hell... */
+void fatal(){}
+void pclog(){}
+int g_str_has_prefix(){return 1;}
+int g_return_if_fail(){return 0;}
+/* the gcc 10 I have cant seem to do inet_ntop */
+/* but we aren't doing ipv6 so whatevers... */
+void inet_ntop(){}
+
+#if 0
+/*this was just as messed up when I found out*/
 //#define _WIN32
 #ifdef _WIN32
 //#include <sys/select.h>
@@ -36,6 +49,7 @@ int slirp_inet_aton(const char *cp, struct in_addr *ia)
 #define inet_aton slirp_inet_aton
 #else
 #include <poll.h>
+#endif
 #endif
 
 /* Dumb simulation tick: 100ms */
